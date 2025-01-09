@@ -1,4 +1,4 @@
-### Mapbox iOS SDK Localization Bug Demo
+### Mapbox iOS SDK Localization Bug Demo with Undocumented solution
 
 This is a demonstration application that highlights a bug in the Mapbox iOS SDK, where localization does not change as expected.
 
@@ -18,6 +18,23 @@ try! self!.mapView.mapboxMap.localizeLabels(into: Locale(identifier: "ar")) /// 
 ```
 
 The localization remains unchanged, and the expected dynamic update does not occur.
+
+## undocumented solution!
+
+Sets up map localization according to the device's current language settings. This utilizes an API that may not be officially documented: 
+
+```Swift
+let locale = Locale.current
+let settingsService = SettingsServiceFactory.getInstance(storageType: .persistent)
+switch settingsService.set(key: MapboxCommonSettings.language, value: "\(locale)") {
+case .success:
+ print("Successfully set MapboxCommonSettings.language \(locale)")
+case .failure(let error):
+ assertionFailure("Failed to set MapboxCommonSettings.language with error: \(error)")
+}
+```
+
+Reference to the blog describing localization support: https://www.mapbox.com/blog/maps-internationalization-34-languages
 
 ### Before testing
 
