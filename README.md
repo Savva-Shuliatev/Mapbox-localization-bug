@@ -2,6 +2,9 @@
 
 This is a demonstration application that highlights a bug in the Mapbox iOS SDK, where localization does not change as expected.
 
+Issue: https://github.com/mapbox/mapbox-maps-ios/issues/2278
+
+
 ### Problem Description
 
 The issue occurs when trying to update the localization programmatically in the code. Despite the expected behavior where localization should change, it does not reflect the changes.
