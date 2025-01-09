@@ -19,7 +19,7 @@ try! self!.mapView.mapboxMap.localizeLabels(into: Locale(identifier: "ar")) /// 
 
 The localization remains unchanged, and the expected dynamic update does not occur.
 
-## undocumented solution!
+## Undocumented Solution!
 
 Sets up map localization according to the device's current language settings. This utilizes an API that may not be officially documented: 
 
