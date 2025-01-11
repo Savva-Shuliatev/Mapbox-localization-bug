@@ -4,6 +4,16 @@ This is a demonstration application that highlights a bug in the Mapbox iOS SDK,
 
 Issue: https://github.com/mapbox/mapbox-maps-ios/issues/2278
 
+[Mapbox developer answer](https://github.com/mapbox/mapbox-maps-ios/issues/2278#issuecomment-2584083920):
+
+>Hi @Savva-Shuliatev --
+>
+> Thanks for the report. You are correct that .localizeLabels() does not work for Mapbox Standard (our default style) or Mapbox Satellite Standard. We have an open issue for this here that you can use to follow updates. In short, Mapbox Standard introduced a new basemap approach that changed how layers are handled at runtime. As you've identified, this means that the .localizeLabels() approach to translating map labels does not work for these styles.
+>
+>If translation using .localizeLabels() is important for your project, I recommend creating a style based on one of our classic styles, such as Mapbox Streets.
+>
+>The alternative approach you identified here using MapboxCommonSettings remains in preview so we do not recommend it for production applications.
+>
 
 ### Problem Description
 
