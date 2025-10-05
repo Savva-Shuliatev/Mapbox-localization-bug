@@ -34,9 +34,9 @@ The localization remains unchanged, and the expected dynamic update does not occ
 Sets up map localization according to the device's current language settings. This utilizes an API that may not be officially documented: 
 
 ```Swift
-let locale = Locale.current
+let locale = Locale.preferredLanguages.first ?? "en"
 let settingsService = SettingsServiceFactory.getInstance(storageType: .persistent)
-switch settingsService.set(key: MapboxCommonSettings.language, value: "\(locale)") {
+switch settingsService.set(key: MapboxCommonSettings.language, value: locale) {
 case .success:
  print("Successfully set MapboxCommonSettings.language \(locale)")
 case .failure(let error):
@@ -45,6 +45,12 @@ case .failure(let error):
 ```
 
 Reference to the blog describing localization support: https://www.mapbox.com/blog/maps-internationalization-34-languages
+
+> ⚠️ **Be careful**: Use a valid language/locale code for Mapbox (e.g., "en", "en-US"). Avoid `Locale.current` or full string representations (e.g., "en_DE (current)") — they can break styles (blank map, missing labels) and trigger errors like:
+```
+[Mapbox] [Warning, maps-core]: ... ?language=en_DE (current): unsupported URL(4)
+[Mapbox] [Error, maps-core/style]: Failed to load source composite: unsupported URL
+```
 
 ### Before testing
 
